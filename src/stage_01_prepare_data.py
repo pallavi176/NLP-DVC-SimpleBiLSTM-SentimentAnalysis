@@ -36,7 +36,7 @@ def main(config_path):
 
     dataset = pd.DataFrame()
     dataset[['text','label']] = df[[5,0]]
-    print(dataset.head())
+    #print(dataset.head())
 
     dataset['label'].replace({4:1}, inplace=True)
     dataset.to_csv(dataset_file, index=False)
