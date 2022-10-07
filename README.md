@@ -1,5 +1,5 @@
-# dvc-project-template
-DVC project template
+# NLP-DVC-SimpleBiLSTM-SentimentAnalysis
+NLP-DVC-SimpleBiLSTM-SentimentAnalysis
 
 ## STEPS -
 
