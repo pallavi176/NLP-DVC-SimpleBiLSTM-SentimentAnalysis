@@ -33,7 +33,14 @@ def main(config_path, params_path):
     dataset_file = os.path.join(prepared_data_dir_path, artifacts["DATASET_FILE"])
 
     df = pd.read_csv(input_data, encoding='ISO-8859-1', header=None)
-    print(df.head())
+    #print(df.head())
+
+    dataset = pd.DataFrame()
+    dataset[['text','label']] = df[[5,0]]
+    print(dataset.head())
+
+    dataset['label'].replace({4:1}, inplace=True)
+    dataset.to_csv(dataset_file, index=False)
 
 
 if __name__ == '__main__':
