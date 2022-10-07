@@ -4,6 +4,7 @@ dvc
 joblib
 pandas
 numpy
+nltk
 tensorflow
 sklearn
 PyYAML
