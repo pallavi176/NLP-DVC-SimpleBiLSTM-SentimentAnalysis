@@ -72,7 +72,7 @@ def preprocess_df(df):
     logging.info("Stopwords done. Starting lemmatization")
     
     # Applying lemmatization
-    df['review'] = df['review'].apply(lambda x: lematize(x))
+    df['text'] = df['text'].apply(lambda x: lematize(x))
 
     logging.info("Preprocessing completed")
 

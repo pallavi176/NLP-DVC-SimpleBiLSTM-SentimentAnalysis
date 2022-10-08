@@ -9,3 +9,19 @@ stages:
     - src/utils/common.py
     outs:
     - artifacts/prepared/dataset.csv
+
+  data_preprocess:
+    cmd: python src/stage_02_data_preprocess.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - src/stage_02_data_preprocess.py
+    - artifacts/prepared/dataset.csv
+    - configs/config.yaml
+    - src/utils/common.py
+    - src/utils/data_management.py
+    params:
+    - preprocess.split
+    - preprocess.seed
+    outs:
+    - artifacts/preprocessed/train.csv
+    - artifacts/preprocessed/test.csv
+  
