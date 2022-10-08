@@ -64,7 +64,7 @@ def preprocess_df(df):
     #Remove Non- ascii characters
     df['text'] = df['text'].apply(lambda x: remove_nonascii(x))
 
-    logging.info("Starting stopwords")
+    logging.info("Above all preprocessing done. Starting stopwords")
 
     #Remove Stopwords
     df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
