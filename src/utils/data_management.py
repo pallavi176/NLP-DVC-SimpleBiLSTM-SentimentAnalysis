@@ -2,6 +2,7 @@ import re
 import string
 import nltk
 import pandas as pd
+import logging
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
@@ -40,7 +41,7 @@ def preprocess_df(df):
     nltk.download('wordnet')
     nltk.download('omw-1.4')
 
-    print("Downloaded all 3 libraries")
+    logging.info("Downloaded all 3 libraries")
 
     # Lower all caps
     df['text'] = df['text'].apply(lambda x: x.lower())
@@ -63,17 +64,17 @@ def preprocess_df(df):
     #Remove Non- ascii characters
     df['text'] = df['text'].apply(lambda x: remove_nonascii(x))
 
-    print("Starting stopwords")
+    logging.info("Starting stopwords")
 
     #Remove Stopwords
     df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
 
-    print("Stopwords done. Starting lemmatization")
+    logging.info("Stopwords done. Starting lemmatization")
     
     # Applying lemmatization
     df['review'] = df['review'].apply(lambda x: lematize(x))
 
-    print("Preprocessing completed")
+    logging.info("Preprocessing completed")
 
     return df
 
