@@ -27,3 +27,20 @@ stages:
     - artifacts/preprocessed/train.tfrecord
     - artifacts/preprocessed/test.tfrecord
   
+  train:
+    cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - artifacts/preprocessed/train.tfrecord
+    - artifacts/preprocessed/test.tfrecord
+    - configs/config.yaml
+    - src/utils/common.py
+    - src/utils/models.py
+    params:
+    - train.vocab_size
+    - train.output_dim
+    - train.epochs
+    - train.lstm_units
+    - train.validation_steps
+    outs:
+    - artifacts/train
+    
