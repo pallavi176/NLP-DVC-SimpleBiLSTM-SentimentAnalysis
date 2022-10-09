@@ -4,8 +4,8 @@ stages:
     cmd: python src/stage_01_prepare_data.py --config=configs/config.yaml
     deps:
     - path: configs/config.yaml
-      md5: 4c6e7c194c754c7ed740220bebb3e590
-      size: 336
+      md5: 021667f6682dd3527a5a6d5977aa8742
+      size: 490
     - path: data/training.1600000.processed.noemoticon.csv
       md5: df952449d6f9b5f9fdfe3fc53ddef7ca
       size: 238803811
@@ -26,8 +26,8 @@ stages:
       md5: 2279c7924742c92a7531b627202e1d0a
       size: 125819345
     - path: configs/config.yaml
-      md5: 8be7bb0f0fd894de38e672ebeea642a7
-      size: 470
+      md5: 021667f6682dd3527a5a6d5977aa8742
+      size: 490
     - path: src/stage_02_data_preprocess.py
       md5: b432b8ac1a23158cdd7e727b97255f17
       size: 3547
@@ -35,8 +35,8 @@ stages:
       md5: d162961d817182441383bdb0e674e685
       size: 675
     - path: src/utils/data_management.py
-      md5: 492aea14d0265616e0c7618a6b5d3c95
-      size: 2241
+      md5: a6a6cdb755c363bd087de11cc97a3a58
+      size: 2242
     params:
       params.yaml:
         preprocess.batch_size: 64
@@ -45,10 +45,42 @@ stages:
         preprocess.split: 0.2
     outs:
     - path: artifacts/preprocessed/test.tfrecord
-      md5: f759a0da601c96eb278b4f06457935de.dir
-      size: 15254603
+      md5: fffb19d0877cfd134b411d07deda4d5c.dir
+      size: 21242243
       nfiles: 3
     - path: artifacts/preprocessed/train.tfrecord
-      md5: 50b2c2507d78d65c8760a4628698a38f.dir
-      size: 60997840
+      md5: f71bb76df50c7647331e21670d8837f2.dir
+      size: 84884329
       nfiles: 3
+  train:
+    cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - path: artifacts/preprocessed/test.tfrecord
+      md5: 2af0b58906852ce6b4e4949b8e848a92.dir
+      size: 21242243
+      nfiles: 3
+    - path: artifacts/preprocessed/train.tfrecord
+      md5: b7525d7301b92c3cf92445587afe477a.dir
+      size: 84884329
+      nfiles: 3
+    - path: configs/config.yaml
+      md5: d532549ecfe9622737109f44213dc9ca
+      size: 441
+    - path: src/utils/common.py
+      md5: d162961d817182441383bdb0e674e685
+      size: 675
+    - path: src/utils/models.py
+      md5: 1c2efb1843fc32a1ebb8bcb63d9d4938
+      size: 773
+    params:
+      params.yaml:
+        train.epochs: 1
+        train.lstm_units: 64
+        train.output_dim: 64
+        train.validation_steps: 30
+        train.vocab_size: 1000
+    outs:
+    - path: artifacts/train
+      md5: a4a3f606c6e3e1e14d5ab349a95e64ce.dir
+      size: 8950107
+      nfiles: 6
