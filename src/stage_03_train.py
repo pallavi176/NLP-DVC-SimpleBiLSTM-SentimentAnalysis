@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 warnings.simplefilter('ignore')
 
 
-STAGE = "STAGE_NAME" ## <<< change stage name 
+STAGE = "STAGE 3"
 
 logging.basicConfig(
     filename=os.path.join("logs", 'running_logs.log'), 
