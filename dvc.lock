@@ -26,8 +26,8 @@ stages:
       md5: 2279c7924742c92a7531b627202e1d0a
       size: 125819345
     - path: configs/config.yaml
-      md5: 4c6e7c194c754c7ed740220bebb3e590
-      size: 336
+      md5: 8be7bb0f0fd894de38e672ebeea642a7
+      size: 470
     - path: src/stage_02_data_preprocess.py
       md5: b432b8ac1a23158cdd7e727b97255f17
       size: 3547
@@ -35,8 +35,8 @@ stages:
       md5: d162961d817182441383bdb0e674e685
       size: 675
     - path: src/utils/data_management.py
-      md5: a6a6cdb755c363bd087de11cc97a3a58
-      size: 2242
+      md5: 492aea14d0265616e0c7618a6b5d3c95
+      size: 2241
     params:
       params.yaml:
         preprocess.batch_size: 64
@@ -45,10 +45,10 @@ stages:
         preprocess.split: 0.2
     outs:
     - path: artifacts/preprocessed/test.tfrecord
-      md5: a7a8b473e2b2256441cda8ab3d9bfca9.dir
-      size: 21242243
+      md5: f759a0da601c96eb278b4f06457935de.dir
+      size: 15254603
       nfiles: 3
     - path: artifacts/preprocessed/train.tfrecord
-      md5: 8975d1443ae5db25eee74a64730232cb.dir
-      size: 84884330
+      md5: 50b2c2507d78d65c8760a4628698a38f.dir
+      size: 60997840
       nfiles: 3
