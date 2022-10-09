@@ -42,6 +42,7 @@ def preprocess_df(df):
     nltk.download('omw-1.4')
 
     logging.info("Downloaded all 3 libraries")
+    print(df.shape)
 
     # Lower all caps
     df['text'] = df['text'].apply(lambda x: x.lower())
@@ -67,12 +68,15 @@ def preprocess_df(df):
     logging.info("Above all preprocessing done. Starting stopwords")
 
     #Remove Stopwords
-    df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
+    #df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
 
     logging.info("Stopwords done. Starting lemmatization")
     
     # Applying lemmatization
     df['text'] = df['text'].apply(lambda x: lematize(x))
+
+    df = df[df['text'].notna()]
+    print(df.shape)
 
     logging.info("Preprocessing completed")
 

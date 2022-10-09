@@ -3,6 +3,7 @@ import argparse
 import logging
 import random
 import pandas as pd
+import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from src.utils.common import read_yaml, create_directories
 from src.utils.data_management import preprocess_df
@@ -38,6 +39,8 @@ def main(config_path, params_path):
 
     split = params["preprocess"]["split"]
     seed = params["preprocess"]["seed"]
+    batch_size = params["preprocess"]["batch_size"]
+    buffer_size = params["preprocess"]["buffer_size"]
     random.seed(seed)
 
     dataset = pd.read_csv(dataset_file)
@@ -52,11 +55,31 @@ def main(config_path, params_path):
 
     print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 
-    train_ds = pd.concat([X_train, pd.DataFrame(y_train)], axis=1)
-    test_ds = pd.concat([X_test, pd.DataFrame(y_test)], axis=1)
+    # train_ds = pd.concat([X_train, pd.DataFrame(y_train)], axis=1)
+    # test_ds = pd.concat([X_test, pd.DataFrame(y_test)], axis=1)
 
-    train_ds.to_csv(train_file, index=False)
-    test_ds.to_csv(test_file, index=False)
+    # train_ds.to_csv(train_file, index=False)
+    # test_ds.to_csv(test_file, index=False)
+
+    train_ds = tf.data.Dataset.from_tensor_slices((X_train['text'].to_numpy(), y_train.to_list()))
+    test_ds = tf.data.Dataset.from_tensor_slices((X_test['text'].to_numpy(), y_test.to_list()))
+
+    for example, label in train_ds.take(3):
+        print(f"sample text:\n{example.numpy()}\n")
+        print(f"label:\n{label.numpy()}\n")
+
+    #shuffling and batching the training dataset
+    train_ds = train_ds.shuffle(buffer_size).batch(batch_size).prefetch(tf.data.AUTOTUNE)  # Prefetch readys next batch data
+    test_ds = test_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
+
+    for example, label in train_ds.take(1):
+        print(f"sample text:\n{example.numpy()}\n")
+        print(f"label:\n{label.numpy()}\n")
+        print(f"label:\n{len(label.numpy())}\n")
+        break
+
+    tf.data.Dataset.save(train_ds, train_file)
+    tf.data.Dataset.save(test_ds, test_file)
 
 
 if __name__ == '__main__':

@@ -9,5 +9,5 @@ artifacts:
   PREPARED_DATA: prepared
   DATASET_FILE: dataset.csv
   PREPROCESSED_DATA: preprocessed
-  TRAIN_DATA: train.csv
-  TEST_DATA: test.csv
+  TRAIN_DATA: train.tfrecord
+  TEST_DATA: test.tfrecord

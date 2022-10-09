@@ -3,3 +3,5 @@
 preprocess:
   split: 0.20
   seed: 2021
+  batch_size: 64
+  buffer_size: 10000
