@@ -5,3 +5,10 @@ preprocess:
   seed: 2021
   batch_size: 64
   buffer_size: 10000
+
+train:
+  vocab_size: 1000
+  output_dim: 64
+  epochs: 1
+  lstm_units: 64
+  validation_steps: 30

@@ -11,3 +11,7 @@ artifacts:
   PREPROCESSED_DATA: preprocessed
   TRAIN_DATA: train.tfrecord
   TEST_DATA: test.tfrecord
+  TRAIN_DIR: train
+  CHECKPOINT_DIR: ckpt
+  CHECKPOINT_MODEL: model
+  TB_ROOT_LOG_DIR: tb_log_dir
