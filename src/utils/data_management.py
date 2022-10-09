@@ -68,7 +68,7 @@ def preprocess_df(df):
     logging.info("Above all preprocessing done. Starting stopwords")
 
     #Remove Stopwords
-    #df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
+    df['text'] = df['text'].apply(lambda x: remove_stopwords(x))
 
     logging.info("Stopwords done. Starting lemmatization")
     
