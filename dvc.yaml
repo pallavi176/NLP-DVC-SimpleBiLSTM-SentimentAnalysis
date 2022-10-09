@@ -21,7 +21,9 @@ stages:
     params:
     - preprocess.split
     - preprocess.seed
+    - preprocess.buffer_size
+    - preprocess.batch_size
     outs:
-    - artifacts/preprocessed/train.csv
-    - artifacts/preprocessed/test.csv
+    - artifacts/preprocessed/train.tfrecord
+    - artifacts/preprocessed/test.tfrecord
   

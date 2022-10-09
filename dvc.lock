@@ -4,8 +4,8 @@ stages:
     cmd: python src/stage_01_prepare_data.py --config=configs/config.yaml
     deps:
     - path: configs/config.yaml
-      md5: be1fcb14d4d7b542a28ce9b53e94b1bf
-      size: 326
+      md5: 4c6e7c194c754c7ed740220bebb3e590
+      size: 336
     - path: data/training.1600000.processed.noemoticon.csv
       md5: df952449d6f9b5f9fdfe3fc53ddef7ca
       size: 238803811
@@ -26,25 +26,29 @@ stages:
       md5: 2279c7924742c92a7531b627202e1d0a
       size: 125819345
     - path: configs/config.yaml
-      md5: be1fcb14d4d7b542a28ce9b53e94b1bf
-      size: 326
+      md5: 4c6e7c194c754c7ed740220bebb3e590
+      size: 336
     - path: src/stage_02_data_preprocess.py
-      md5: 978a4e0c932ebe779f18870a74642403
-      size: 2510
+      md5: b432b8ac1a23158cdd7e727b97255f17
+      size: 3547
     - path: src/utils/common.py
       md5: d162961d817182441383bdb0e674e685
       size: 675
     - path: src/utils/data_management.py
-      md5: ccc7064a1f6823d4fdf143200769f98c
-      size: 2164
+      md5: a6a6cdb755c363bd087de11cc97a3a58
+      size: 2242
     params:
       params.yaml:
+        preprocess.batch_size: 64
+        preprocess.buffer_size: 10000
         preprocess.seed: 2021
         preprocess.split: 0.2
     outs:
-    - path: artifacts/preprocessed/test.csv
-      md5: 8590931ceaf838a601b963cfb99be39c
-      size: 14664514
-    - path: artifacts/preprocessed/train.csv
-      md5: 4616a475a7f1760b2cf4c54598e693c4
-      size: 58637714
+    - path: artifacts/preprocessed/test.tfrecord
+      md5: a7a8b473e2b2256441cda8ab3d9bfca9.dir
+      size: 21242243
+      nfiles: 3
+    - path: artifacts/preprocessed/train.tfrecord
+      md5: 8975d1443ae5db25eee74a64730232cb.dir
+      size: 84884330
+      nfiles: 3
