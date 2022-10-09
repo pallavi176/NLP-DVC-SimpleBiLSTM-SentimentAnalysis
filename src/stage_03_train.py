@@ -1,7 +1,6 @@
 import os
 import argparse
 import logging
-import random
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -37,6 +36,9 @@ def main(config_path, params_path):
     checkpoint_dir = os.path.join(train_dir_path, artifacts["CHECKPOINT_DIR"])
     tb_root_log_dir = os.path.join(train_dir_path, artifacts["TB_ROOT_LOG_DIR"])
     ckpt_model = artifacts["CHECKPOINT_MODEL"]
+    model_dir = os.path.join(train_dir_path, artifacts["MODEL_DIR"])
+    create_directories([model_dir])
+    model_file = os.path.join(model_dir, artifacts["MODEL_FILE"])
 
     vocab_size = params["train"]["vocab_size"]
     output_dim = params["train"]["output_dim"]
@@ -77,7 +79,7 @@ def main(config_path, params_path):
     print(model.summary())
 
     model.compile(
-                loss=tf.keras.losses.BinaryCrossentropy(from_logits=True), # 
+                loss=tf.keras.losses.BinaryCrossentropy(from_logits=True), 
                 optimizer=tf.keras.optimizers.Adam(1e-4),
                 metrics=["accuracy"]
             )
@@ -90,7 +92,7 @@ def main(config_path, params_path):
                     validation_steps=validation_steps,
                     callbacks=callback_list)
 
-    #model.save("model_full.h5")
+    model.save(model_file)
 
 
 if __name__ == '__main__':

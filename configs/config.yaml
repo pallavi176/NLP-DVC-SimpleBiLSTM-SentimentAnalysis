@@ -13,5 +13,7 @@ artifacts:
   TEST_DATA: test.tfrecord
   TRAIN_DIR: train
   CHECKPOINT_DIR: ckpt
-  CHECKPOINT_MODEL: model
+  CHECKPOINT_MODEL: model.h5
   TB_ROOT_LOG_DIR: tb_log_dir
+  MODEL_DIR: model
+  MODEL_FILE: model.h5
