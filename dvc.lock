@@ -4,8 +4,8 @@ stages:
     cmd: python src/stage_01_prepare_data.py --config=configs/config.yaml
     deps:
     - path: configs/config.yaml
-      md5: 021667f6682dd3527a5a6d5977aa8742
-      size: 490
+      md5: 10cb1145e21506a32369121315a20c84
+      size: 489
     - path: data/training.1600000.processed.noemoticon.csv
       md5: df952449d6f9b5f9fdfe3fc53ddef7ca
       size: 238803811
@@ -26,8 +26,8 @@ stages:
       md5: 2279c7924742c92a7531b627202e1d0a
       size: 125819345
     - path: configs/config.yaml
-      md5: 021667f6682dd3527a5a6d5977aa8742
-      size: 490
+      md5: 10cb1145e21506a32369121315a20c84
+      size: 489
     - path: src/stage_02_data_preprocess.py
       md5: b432b8ac1a23158cdd7e727b97255f17
       size: 3547
@@ -45,33 +45,33 @@ stages:
         preprocess.split: 0.2
     outs:
     - path: artifacts/preprocessed/test.tfrecord
-      md5: fffb19d0877cfd134b411d07deda4d5c.dir
-      size: 21242243
+      md5: e9530d5f0c6f71cf2226919984a51acd.dir
+      size: 21242244
       nfiles: 3
     - path: artifacts/preprocessed/train.tfrecord
-      md5: f71bb76df50c7647331e21670d8837f2.dir
-      size: 84884329
+      md5: 3ead7e5538ac02eb7c38ef1df4bf6659.dir
+      size: 84884330
       nfiles: 3
   train:
     cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml
     deps:
     - path: artifacts/preprocessed/test.tfrecord
-      md5: 2af0b58906852ce6b4e4949b8e848a92.dir
-      size: 21242243
+      md5: e9530d5f0c6f71cf2226919984a51acd.dir
+      size: 21242244
       nfiles: 3
     - path: artifacts/preprocessed/train.tfrecord
-      md5: b7525d7301b92c3cf92445587afe477a.dir
-      size: 84884329
+      md5: 3ead7e5538ac02eb7c38ef1df4bf6659.dir
+      size: 84884330
       nfiles: 3
     - path: configs/config.yaml
-      md5: d532549ecfe9622737109f44213dc9ca
-      size: 441
+      md5: 10cb1145e21506a32369121315a20c84
+      size: 489
     - path: src/utils/common.py
       md5: d162961d817182441383bdb0e674e685
       size: 675
     - path: src/utils/models.py
-      md5: 1c2efb1843fc32a1ebb8bcb63d9d4938
-      size: 773
+      md5: 514808620565edc8518dad0463cf641e
+      size: 789
     params:
       params.yaml:
         train.epochs: 1
@@ -81,6 +81,6 @@ stages:
         train.vocab_size: 1000
     outs:
     - path: artifacts/train
-      md5: a4a3f606c6e3e1e14d5ab349a95e64ce.dir
-      size: 8950107
-      nfiles: 6
+      md5: 4a700ec619706aa1910665b26d85683c.dir
+      size: 16839953
+      nfiles: 10
