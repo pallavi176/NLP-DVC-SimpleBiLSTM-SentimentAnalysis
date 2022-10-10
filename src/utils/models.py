@@ -23,6 +23,6 @@ def callbacks(tb_root_log_dir, checkpoint_dir, ckpt_model):
     callback_list = [
                     tb_cb,
                     ckpt_cb
-    ]
+                    ]
 
     return callback_list
