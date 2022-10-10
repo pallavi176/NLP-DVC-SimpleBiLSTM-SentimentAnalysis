@@ -92,8 +92,8 @@ def main(config_path, params_path):
                     validation_steps=validation_steps,
                     callbacks=callback_list)
 
-    model.save(model_file)
-    # tf.keras.models.save_model(model, model_file)
+    # model.save(model_file)
+    tf.keras.models.save_model(model, model_file)
 
 
 if __name__ == '__main__':
