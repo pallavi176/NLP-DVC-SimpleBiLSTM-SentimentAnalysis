@@ -16,4 +16,4 @@ artifacts:
   CHECKPOINT_MODEL: model
   TB_ROOT_LOG_DIR: tb_log_dir
   MODEL_DIR: model
-  MODEL_FILE: model.h5
+  MODEL_FILE: model_full.h5
